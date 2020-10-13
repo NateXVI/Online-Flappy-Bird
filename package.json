@@ -1,0 +1,22 @@
+{
+  "name": "online-flappy-bird",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NateXVI/Online-Flappy-Bird.git"
+  },
+  "author": "Nathan Diven",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NateXVI/Online-Flappy-Bird/issues"
+  },
+  "homepage": "https://github.com/NateXVI/Online-Flappy-Bird#readme",
+  "dependencies": {
+    "pg": "^8.4.1"
+  }
+}
