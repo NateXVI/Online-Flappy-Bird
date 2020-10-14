@@ -1,0 +1,321 @@
+const game = {
+    screen: 'titleScreen'
+}
+let scoreScreen = {}
+let canvas;
+let deltaSec;
+
+let backgroundImage;
+let flappyLogo;
+let titleScreenFont;
+let scoreFont;
+function preload() {
+    game.birdSprite = loadImage('assets/bird.png');
+    game.pipeSpriteDown = loadImage('assets/pipespritedown.png')
+    game.pipeSpriteUp = loadImage('assets/pipespriteup.png')
+    backgroundImage = loadImage('assets/background.png');
+    groundImage = loadImage('assets/ground.png');
+    scorePanel = loadImage('assets/panel_score.png');
+    flappyLogo = loadImage('assets/flappylogo.png');
+    titleScreenFont = loadFont("http://natediven.com/flappybird/assets/Pixeled.ttf");
+    scoreFont = loadFont('http://natediven.com/flappybird/assets/flappy.TTF');
+}
+function setup() {
+    angleMode(DEGREES);
+    deltaSec = 0;
+    canvas = createCanvas(1920,1080);
+    canvas.parent("canvas-div");
+    background(0);  
+    game.bird = new Bird();
+    game.bird.pos.x = width/2;
+    game.bird.pos.y = height/2;
+
+    game.pipes = [];
+    game.pipes.push(new Pipe);
+
+    scoreScreen = {
+        animationDuration: 1000,
+        pos: 0,
+        scale: 5,
+        panel: scorePanel
+    };
+}
+
+function draw() {
+    deltaSec = deltaTime/1000;
+    // background(0);
+    switch (game.screen) {
+        case 'titleScreen':
+            drawBackground();
+            drawGround();
+            drawTitleScreen();
+            updateTitleScreen();
+            break;
+        case 'gameScreen':
+            game.updateGame();
+            game.drawGame();
+            drawScore();
+            break;
+        case 'scoreScreen':
+            game.bird.update();
+            game.drawGame();
+            updateScoreScreen();
+            drawScoreScreen();
+            break;
+    }
+
+    clearKeys();
+}
+
+let backgroundOffset = 0;
+let backgroundSpeed = -25;
+function drawBackground() {
+    push();
+    image(
+        backgroundImage,
+        backgroundOffset,
+        0,
+        width,
+        height
+    )
+    image(
+        backgroundImage,
+        backgroundOffset + width,
+        0,
+        width,
+        height
+    )
+    backgroundOffset += backgroundSpeed * deltaSec;
+    if (backgroundOffset <= -width) backgroundOffset = backgroundOffset + width;
+    pop();
+}
+function drawStaticBackground() {
+    push();
+    image(
+        backgroundImage,
+        backgroundOffset,
+        0,
+        width,
+        height
+    )
+    image(
+        backgroundImage,
+        backgroundOffset + width,
+        0,
+        width,
+        height
+    )
+    pop();
+}
+groundOffset = 0;
+function drawGround() {
+    let speed = new Pipe().speed;
+    let scale = 0.25;
+    let w = groundImage.width * scale;
+    let h = groundImage.height * scale;
+    push();
+    imageMode(CORNER);
+    for (let i = 0; i < 7; i++) {
+        image(groundImage, (i*w)+groundOffset, height-90, w, h);
+    }
+    pop();
+
+    if(game.bird.isAlive){
+        groundOffset -= speed * deltaSec;
+        if (groundOffset <= -w) groundOffset = groundOffset + w;
+    }
+}
+let titleTextScale = 0;
+function drawTitleScreen() {
+    push();
+    imageMode(CENTER);
+    let fScale = 0.25;
+    let f = createVector(flappyLogo.width, flappyLogo.height);
+    image(flappyLogo, width/2, height/3, f.x * fScale, f.y * fScale);
+    textFont(titleScreenFont);
+    textAlign(CENTER);
+    rectMode(CENTER);
+    fill(255);
+    stroke(0);
+    strokeWeight(7 * titleTextScale + 1);
+    textSize(40 * titleTextScale);
+    text('press space to play', width/2, height-height/90, 1000, 900);
+    titleTextScale = constrain(titleTextScale + 1 * deltaSec,0,1);
+    pop();
+}
+function updateTitleScreen() {
+    if (titleTextScale >= 0.99 && keys.space.isPressed){
+        //game.screen = 'gameScreen'
+        game.start();
+    }
+}
+let keys = {
+    space: {
+        isPressed: false,
+        isReleased: false,
+        isDown: false,
+        isUp: true
+    }
+}
+function clearKeys() {
+        keys.space.isPressed = false;
+        // if (keys.space.isReleased == true) {
+        //     console.log(keys.space);
+        // }
+        keys.space.isReleased = false;
+}
+function keyPressed() {
+    let k;
+    switch (keyCode) {
+        case 32:
+            k = "space";
+            break;
+    }
+
+    if (k !== undefined) {
+        keys[k].isPressed = true;
+        keys[k].isReleased = false;
+        keys[k].isDown = true;
+        keys[k].isUp = false;
+    }
+}
+function keyReleased() {
+    let k;
+    switch (keyCode) {
+        case 32:
+            k = "space";
+            break;
+    }
+
+    if (k !== undefined) {
+        keys[k].isPressed = false;
+        keys[k].isReleased = true;
+        keys[k].isDown = false;
+        keys[k].isUp = true;
+    }
+}
+
+game.start = function() {
+    game.screen = 'gameScreen';
+    game.bird.isAlive = true;
+    game.startTime = millis();
+    game.bird.pos.x = width/3;
+    game.bird.pos.y = height * 0.25;
+    game.score = 0;
+    game.pipes = [];
+    game.pipes.push(new Pipe ())
+}
+
+game.end = function() {
+    game.screen = 'scoreScreen';
+    game.bird.isAlive = false;
+    game.bird.velocity = -game.bird.jump;
+    game.endTime = millis();
+
+    if (game.highScore == undefined) game.highScore = game.score;
+    else if (game.score > game.highScore) {
+        game.highScore = game.score;
+        game.newBest = true;
+    } else {
+        game.newBest = false;
+    }
+}
+
+game.updateGame = function() {
+    console.log(game.bird.previousPos, game.bird.pos.x);
+    for (let i = 0; i < game.pipes.length; i++) {
+        if (game.pipes[i].pos.x < game.bird.pos.x && game.pipes[i].previousPos >= game.bird.pos.x) {
+            game.score += 1;
+            // console.log(this.score);
+
+            
+        }
+    }
+
+    if (millis() - game.startTime < 1200){
+        game.bird.pos.x = lerp(-121, width/4, (millis() - game.startTime)/1000)
+    } else {
+        game.bird.update();
+        for (let i = 0; i < game.pipes.length; i++){
+            game.pipes[i].update();
+        }
+        updatePipes();
+        if(!game.bird.isAlive) game.end();
+        //console.log(game.bird.pos.y);
+    }
+}
+
+game.drawGame = function() {
+    if (game.bird.isAlive) {
+        drawBackground();
+    } else {
+        drawStaticBackground();
+    }
+    
+    for (let i = 0; i < game.pipes.length; i++){
+        game.pipes[i].draw();
+    }
+    drawGround();
+    game.bird.draw();
+}
+
+function drawScore () {
+    push();
+    fill(255);
+    stroke(0);
+    strokeWeight(10);
+    textFont(scoreFont, 100);
+    textAlign(CENTER);
+    text(game.score, width / 2, 110);
+    pop();
+}
+
+
+function updateScoreScreen() {
+    if (millis() - game.endTime < scoreScreen.animationDuration) {
+        scoreScreen.pos = lerp(-scorePanel.width * scoreScreen.scale, width/2, (millis() - game.endTime)/scoreScreen.animationDuration);
+    } else {
+        scoreScreen.pos = width/2;
+    }
+}
+
+function drawScoreScreen() {
+    push();
+    rectMode(CENTER);
+    imageMode(CENTER);
+    let w = scorePanel.width * scale;
+    let h = scorePanel.height * scale;
+    image(scorePanel, scoreScreen.pos, height/2, w, h);
+    image(scorePanel, scoreScreen.pos, height/2, scorePanel.width * scoreScreen.scale, scorePanel.height * scoreScreen.scale);
+    //if (game.newBest) 
+    pop();
+    
+}
+
+function checkCollision(bird, pipe) {
+    let cx = bird.pos.x;
+    let cy = bird.pos.y;
+    let cr = bird.hitRadius;
+    
+    let left = pipe.pos.x - (pipe.hitboxWidth/2);
+    let right = pipe.pos.x + (pipe.hitboxWidth/2);
+    let top = pipe.pos.y + (pipe.gap/2);
+    let bottom = height;
+    
+    let x = constrain(cx, left, right);
+    let y = constrain(cy, top, bottom);
+    
+    let d = dist(cx, cy, x, y);
+    
+    if (d <= cr) return true;
+    
+    top = 0;
+    bottom = pipe.pos.y - (pipe.gap/2)
+    
+    x = constrain(cx, left, right);
+    y = constrain(cy, top, bottom);
+    
+    d = dist(cx, cy, x, y);
+    
+    if (d <= cr) return true;
+}
