@@ -10,7 +10,7 @@ class Bird {
         this.jump = 550;
         this.isAlive = true;
         this.drawHitbox = false;
-        this.hitRadius = 80/2;
+        this.hitRadius = 37;
         this.previousPos = this.pos.x;
     }
     update() {

@@ -5,18 +5,32 @@ let scoreScreen = {}
 let canvas;
 let deltaSec;
 
+let bronzeMedal;
+let silverMedal;
+let goldMedal;
+let platinumMedal;
+let gameOverLabel;
+let scorePanel;
+let newHighScoreLabel;
 let backgroundImage;
 let flappyLogo;
 let titleScreenFont;
 let scoreFont;
 function preload() {
+    bronzeMedal = loadImage('assets/medal_bronze.png');
+    silverMedal = loadImage('assets/medal_silver.png');
+    goldMedal = loadImage('assets/medal_gold.png');
+    platinumMedal = loadImage('assets/medal_platinum.png');
     game.birdSprite = loadImage('assets/bird.png');
     game.pipeSpriteDown = loadImage('assets/pipespritedown.png')
     game.pipeSpriteUp = loadImage('assets/pipespriteup.png')
     backgroundImage = loadImage('assets/background.png');
     groundImage = loadImage('assets/ground.png');
     scorePanel = loadImage('assets/panel_score.png');
+    newHighScoreLabel = loadImage('assets/label_new.png');
+    gameOverLabel = loadImage('assets/label_game_over.png')
     flappyLogo = loadImage('assets/flappylogo.png');
+
     titleScreenFont = loadFont("http://natediven.com/flappybird/assets/Pixeled.ttf");
     scoreFont = loadFont('http://natediven.com/flappybird/assets/flappy.TTF');
 }
@@ -34,11 +48,12 @@ function setup() {
     game.pipes.push(new Pipe);
 
     scoreScreen = {
-        animationDuration: 1000,
-        pos: 0,
+        animationDuration: 800,
+        pos: createVector(0, height/2),
         scale: 5,
         panel: scorePanel
     };
+    flappyCookies.init();
 }
 
 function draw() {
@@ -116,7 +131,7 @@ function drawGround() {
     push();
     imageMode(CORNER);
     for (let i = 0; i < 7; i++) {
-        image(groundImage, (i*w)+groundOffset, height-90, w, h);
+        image(groundImage, (i*w)+groundOffset-i, height-90, w, h);
     }
     pop();
 
@@ -204,6 +219,7 @@ game.start = function() {
     game.score = 0;
     game.pipes = [];
     game.pipes.push(new Pipe ())
+    game.bird.rotation = 0;
 }
 
 game.end = function() {
@@ -212,17 +228,25 @@ game.end = function() {
     game.bird.velocity = -game.bird.jump;
     game.endTime = millis();
 
-    if (game.highScore == undefined) game.highScore = game.score;
+    if (game.highScore == undefined) {
+        game.highScore = game.score;
+        if (game.score == 0){
+            game.newBest = false;
+        }
+        else {
+            game.newBest = true;
+        }
+    }
     else if (game.score > game.highScore) {
         game.highScore = game.score;
         game.newBest = true;
+        flappyCookies.saveHighScore();
     } else {
         game.newBest = false;
     }
 }
 
 game.updateGame = function() {
-    console.log(game.bird.previousPos, game.bird.pos.x);
     for (let i = 0; i < game.pipes.length; i++) {
         if (game.pipes[i].pos.x < game.bird.pos.x && game.pipes[i].previousPos >= game.bird.pos.x) {
             game.score += 1;
@@ -273,22 +297,83 @@ function drawScore () {
 
 function updateScoreScreen() {
     if (millis() - game.endTime < scoreScreen.animationDuration) {
-        scoreScreen.pos = lerp(-scorePanel.width * scoreScreen.scale, width/2, (millis() - game.endTime)/scoreScreen.animationDuration);
+        scoreScreen.pos.x = lerp(-scorePanel.width * scoreScreen.scale, width/2, (millis() - game.endTime)/scoreScreen.animationDuration);
     } else {
-        scoreScreen.pos = width/2;
+        scoreScreen.pos.x = width/2;
+        if (keys.space.isPressed) game.start();
     }
 }
 
 function drawScoreScreen() {
     push();
+    textFont(scoreFont, scoreScreen.scale * 9);
+    textAlign(RIGHT);
+    fill(255);
+    stroke(0);
+    strokeWeight(scoreScreen.scale * 2);
     rectMode(CENTER);
     imageMode(CENTER);
-    let w = scorePanel.width * scale;
-    let h = scorePanel.height * scale;
-    image(scorePanel, scoreScreen.pos, height/2, w, h);
-    image(scorePanel, scoreScreen.pos, height/2, scorePanel.width * scoreScreen.scale, scorePanel.height * scoreScreen.scale);
-    //if (game.newBest) 
+
+    image(scorePanel, scoreScreen.pos.x, scoreScreen.pos.y, scorePanel.width * scoreScreen.scale, scorePanel.height * scoreScreen.scale);
+    image(
+        gameOverLabel,
+        scoreScreen.pos.x,
+        scoreScreen.pos.y - (scoreScreen.scale * 45),
+        gameOverLabel.width * scoreScreen.scale,
+        gameOverLabel.height * scoreScreen.scale
+    )
+
+    text(
+        game.score,
+        scoreScreen.pos.x + (scoreScreen.scale * 45),
+        scoreScreen.pos.y - (scoreScreen.scale * 3)
+    );
+    text(
+        game.highScore,
+        scoreScreen.pos.x + (scoreScreen.scale * 45),
+        scoreScreen.pos.y + (scoreScreen.scale * 17)
+    );
+
+    textFont(titleScreenFont, scoreScreen.scale * 3);
+    textAlign(CENTER);
+    strokeWeight(scoreScreen.scale * 1);
+    text(
+        "PRESS SPACE TO RESTART",
+        scoreScreen.pos.x,
+        scoreScreen.pos.y + (scoreScreen.scale * 42)
+    );
+    if (game.newBest) {
+        image(newHighScoreLabel, 
+            scoreScreen.pos.x + (scoreScreen.scale * 19), 
+            scoreScreen.pos.y + (scoreScreen.scale * 4), 
+            newHighScoreLabel.width * scoreScreen.scale, 
+            newHighScoreLabel.height * scoreScreen.scale);
+    }
+    if (game.score >= 10){
+        let medal;
+        if (game.score < 20) {
+            medal = bronzeMedal;
+        }
+        else if (game.score < 30) {
+            medal = silverMedal;
+        }
+        else if (game.score < 40) {
+            medal = goldMedal;
+        }
+        else if (game.score >= 40) {
+            medal = platinumMedal;
+        }
+
+        image(
+            medal,
+            scoreScreen.pos.x - (scoreScreen.scale * 32),
+            scoreScreen.pos.y + (scoreScreen.scale * 4),
+            medal.width * scoreScreen.scale,
+            medal.height * scoreScreen.scale
+        )
+    }
     pop();
+    
     
 }
 

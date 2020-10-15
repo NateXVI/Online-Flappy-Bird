@@ -39,7 +39,6 @@ function updatePipes() {
         game.pipes.push(new Pipe);
     }
     if(game.pipes[0].pos.x < -100) {
-        print(game.pipes[0].pos.x);
         game.pipes.shift();
     }
 }
