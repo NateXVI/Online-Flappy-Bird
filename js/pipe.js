@@ -4,7 +4,7 @@ class Pipe {
         this.scale = 0.6;
         this.width = game.pipeSpriteDown.width * this.scale;
         this.height = game.pipeSpriteDown.height * this.scale;
-        this.gap = 215;
+        this.gap = 190;
         this.speed = 400;
         this.drawHitbox = false;
         this.hitboxWidth = this.width * 0.175;

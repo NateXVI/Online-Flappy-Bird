@@ -314,7 +314,13 @@ function drawScoreScreen() {
     rectMode(CENTER);
     imageMode(CENTER);
 
-    image(scorePanel, scoreScreen.pos.x, scoreScreen.pos.y, scorePanel.width * scoreScreen.scale, scorePanel.height * scoreScreen.scale);
+    image(
+        scorePanel, 
+        scoreScreen.pos.x, 
+        scoreScreen.pos.y, 
+        scorePanel.width * 
+        scoreScreen.scale, 
+        scorePanel.height * scoreScreen.scale);
     image(
         gameOverLabel,
         scoreScreen.pos.x,
