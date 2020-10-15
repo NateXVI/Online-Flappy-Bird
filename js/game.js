@@ -245,6 +245,7 @@ game.end = function() {
     } else {
         game.newBest = false;
     }
+    leaderboard.saveScore();
 }
 
 game.updateGame = function() {
@@ -411,3 +412,9 @@ function checkCollision(bird, pipe) {
     
     if (d <= cr) return true;
 }
+
+window.addEventListener('keydown', function(e) {
+    if(e.keyCode == 32 && e.target == document.body) {
+      e.preventDefault();
+    }
+  });
