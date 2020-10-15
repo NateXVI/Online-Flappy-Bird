@@ -15,7 +15,7 @@ let newHighScoreLabel;
 let backgroundImage;
 let flappyLogo;
 let titleScreenFont;
-let scoreFont;
+let scoreFont; 
 function preload() {
     bronzeMedal = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/medal_bronze.png');
     silverMedal = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/medal_silver.png');
