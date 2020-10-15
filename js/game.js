@@ -220,12 +220,13 @@ game.start = function() {
     game.pipes = [];
     game.pipes.push(new Pipe ())
     game.bird.rotation = 0;
+    game.bird.velocity = 0;
 }
 
 game.end = function() {
     game.screen = 'scoreScreen';
     game.bird.isAlive = false;
-    game.bird.velocity = -game.bird.jump;
+    game.bird.velocity = -game.bird.jump * 1.75;
     game.endTime = millis();
 
     if (game.highScore == undefined) {
