@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/api/get/leaderboard', function (req, res) {
-    client.query('SELECT * FROM scores ORDER BY player_score DESC')
+    client.query('SELECT player_name, player_score FROM scores ORDER BY player_score DESC LIMIT 100')
     .then(results => res.send(results.rows));
 });
 
