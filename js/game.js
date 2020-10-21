@@ -32,7 +32,7 @@ function preload() {
     gameOverLabel = loadImage(domain + '/assets/label_game_over.png')
     flappyLogo = loadImage(domain + '/assets/flappylogo.png');
 
-    titleScreenFont = loadFont(domain + '/assets/Pixeled.ttf");
+    titleScreenFont = loadFont(domain + '/assets/Pixeled.ttf');
     scoreFont = loadFont(domain + '/assets/flappy.TTF');
 }
 function setup() {
