@@ -11,7 +11,7 @@ let flappyCookies = {
         }
         if (playerName){
             document.getElementById('player-name').value = playerName;
-            console.log("player name is " + playerName)
+            //console.log("player name is " + playerName)
         } else {
             document.cookie = 'player_name='
         }

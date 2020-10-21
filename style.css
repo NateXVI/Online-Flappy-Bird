@@ -49,3 +49,7 @@ canvas {
   margin-bottom: 30px;
   border-radius: 10px;
 }
+
+#leaderboard {
+  margin: auto;
+}
