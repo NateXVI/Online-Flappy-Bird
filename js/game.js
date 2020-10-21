@@ -16,23 +16,24 @@ let backgroundImage;
 let flappyLogo;
 let titleScreenFont;
 let scoreFont; 
+const domain = 'http://flappy.stupid.fun'
 function preload() {
-    bronzeMedal = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/medal_bronze.png');
-    silverMedal = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/medal_silver.png');
-    goldMedal = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/medal_gold.png');
-    platinumMedal = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/medal_platinum.png');
-    game.birdSprite = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/bird.png');
-    game.pipeSpriteDown = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/pipespritedown.png')
-    game.pipeSpriteUp = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/pipespriteup.png')
-    backgroundImage = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/background.png');
-    groundImage = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/ground.png');
-    scorePanel = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/panel_score.png');
-    newHighScoreLabel = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/label_new.png');
-    gameOverLabel = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/label_game_over.png')
-    flappyLogo = loadImage('https://natexvi.github.io/Online-Flappy-Bird/assets/flappylogo.png');
+    bronzeMedal = loadImage(domain + '/assets/medal_bronze.png');
+    silverMedal = loadImage(domain + '/assets/medal_silver.png');
+    goldMedal = loadImage(domain + '/assets/medal_gold.png');
+    platinumMedal = loadImage(domain + '/assets/medal_platinum.png');
+    game.birdSprite = loadImage(domain + '/assets/bird.png');
+    game.pipeSpriteDown = loadImage(domain + '/assets/pipespritedown.png')
+    game.pipeSpriteUp = loadImage(domain + '/assets/pipespriteup.png')
+    backgroundImage = loadImage(domain + '/assets/background.png');
+    groundImage = loadImage(domain + '/assets/ground.png');
+    scorePanel = loadImage(domain + '/assets/panel_score.png');
+    newHighScoreLabel = loadImage(domain + '/assets/label_new.png');
+    gameOverLabel = loadImage(domain + '/assets/label_game_over.png')
+    flappyLogo = loadImage(domain + '/assets/flappylogo.png');
 
-    titleScreenFont = loadFont("https://natexvi.github.io/Online-Flappy-Bird/assets/Pixeled.ttf");
-    scoreFont = loadFont('https://natexvi.github.io/Online-Flappy-Bird/assets/flappy.TTF');
+    titleScreenFont = loadFont(domain + '/assets/Pixeled.ttf");
+    scoreFont = loadFont(domain + '/assets/flappy.TTF');
 }
 function setup() {
     angleMode(DEGREES);
