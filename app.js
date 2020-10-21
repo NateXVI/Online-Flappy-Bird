@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 
 app.get('/api/get/leaderboard', function (req, res) {
     client.query('SELECT * FROM scores')
-    .then(results => res.send(results));
+    .then(results => res.send(results.rows));
 });
 
 app.listen(process.env.PORT || 3000, () => console.log('Server is running'));
