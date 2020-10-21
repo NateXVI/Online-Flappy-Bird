@@ -3,12 +3,9 @@ const leaderboard = {
     get: async function() {
         const name = flappyCookies.parse()['player_name'];
         //console.log(name);
-        if (name && name != "") {
             let response = await fetch('https://flappy-bird-leaderboard.herokuapp.com/api/get/leaderboard', {method: 'get'});
             let data = await response.json();
             return data;
-        
-        }
         
     },
     saveScore: async function() {
