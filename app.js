@@ -1,19 +1,24 @@
 require('dotenv').config();
 
 const express = require('express');
-const app = express();
+
+const cors = require('cors');
 
 const { Client } = require('pg');
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: {
-      rejectUnauthorized: false
+        rejectUnauthorized: false
     }
-  });
+});
 
 client.connect()
 .then(() => console.log('Connected to database'))
+
+const app = express();
+
+app.use(cors())
 
 app.get('/', function (req, res) {
     res.send("<h1>It's working.</h1>");
