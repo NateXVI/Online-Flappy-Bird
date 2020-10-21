@@ -16,7 +16,8 @@ let backgroundImage;
 let flappyLogo;
 let titleScreenFont;
 let scoreFont; 
-const domain = 'flappy.stoopid.fun'
+
+const domain = 'https://flappy.stoopid.fun'
 function preload() {
     bronzeMedal = loadImage(domain + '/assets/medal_bronze.png');
     silverMedal = loadImage(domain + '/assets/medal_silver.png');
