@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/api/get/leaderboard', function (req, res) {
-    client.query('SELECT * FROM scores')
+    client.query('SELECT * FROM scores ORDER BY player_score DESC')
     .then(results => res.send(results.rows));
 });
 
