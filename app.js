@@ -22,7 +22,11 @@ app.use(cors())
 
 app.get('/', function (req, res) {
     res.send("<h1>It's working.</h1>");
-})
+});
+
+app.post('/api/post/score/:player_id/:player_name/:player_score', function (req, res) {
+    res.send(req.params);
+});
 
 app.get('/api/get/leaderboard', function (req, res) {
     client.query('SELECT player_name, player_score FROM scores ORDER BY player_score DESC LIMIT 100')
