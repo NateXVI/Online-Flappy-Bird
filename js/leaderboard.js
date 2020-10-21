@@ -30,9 +30,9 @@ leaderboard.get()
 
     for(let i = 0; i < result.length; i++){
         let r = i+1;
-        let tr = "<tr>";
+        let tr = '<tr class="th">';
 
-        tr += `<td>${r}</td><td>${result[i].player_name}</td><td>${result[i].player_score}</td></tr>`;
+        tr += `<td class="th">${r}</td><td class="th">${result[i].player_name}</td><td class="th">${result[i].player_score}</td></tr>`;
         table.innerHTML += tr;
     }
 });

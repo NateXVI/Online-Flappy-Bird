@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap");
 *,
 html {
   background: #87ceeb;
@@ -52,4 +52,14 @@ canvas {
 
 #leaderboard {
   margin: auto;
+  background: black;
+  width: 90%;
+  font-size: 2rem;
+  margin-bottom: 5rem;
+}
+
+.th {
+  background: white;
+  padding: 0.3rem;
+  font-family: "Nunito", sans-serif;
 }
