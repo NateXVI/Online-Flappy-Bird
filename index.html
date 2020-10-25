@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <script src="js/cookies.js"></script>
     <script src="js/leaderboard.js"></script>
 </head>
+
 <body>
     <div id="div-container">
         <div id="canvas-div"></div>
@@ -19,7 +21,7 @@
 
     <div id="player-div">
         <p>Enter name to save score to online leaderboard</p>
-        <input type="text" name="player-name" id="player-name" maxlength="10" oninput="flappyCookies.savePlayerName()">
+        <input type="text" name="player-name" id="player-name" maxlength="20" oninput="flappyCookies.savePlayerName()">
     </div>
     <table id="leaderboard">
         <tr class="th">
@@ -29,4 +31,5 @@
         </tr>
     </table>
 </body>
+
 </html>
