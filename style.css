@@ -52,7 +52,7 @@ canvas {
 
 #leaderboard {
   margin: auto;
-  background: black;
+  /* background: black; */
   width: 90%;
   font-size: 2rem;
   margin-bottom: 5rem;
@@ -62,4 +62,5 @@ canvas {
   background: white;
   padding: 0.3rem;
   font-family: "Nunito", sans-serif;
+  border-radius: 15px;
 }
