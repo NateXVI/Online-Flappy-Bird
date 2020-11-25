@@ -2,65 +2,64 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap");
 *,
 html {
-  background: #87ceeb;
-  padding: 0;
-  margin: 0;
+	background: #87ceeb;
+	padding: 0;
+	margin: 0;
 }
 
 #div-container {
-  width: 80%;
-  margin: auto;
-  max-height: 100%;
+	width: 80%;
+	margin: auto;
+	max-height: 100%;
 }
 
 #canvas-div {
-  padding-top: 56.25%;
-  width: 100%;
-  max-height: 100%;
+	padding-top: 56.25%;
+	width: 100%;
+	max-height: 100%;
 }
 
 canvas {
-  margin-top: -100%;
-  width: 100% !important;
-  height: 100% !important;
+	margin-top: -100%;
+	width: 100% !important;
+	height: 100% !important;
 }
 
 #player-div {
-  width: 100%;
+	width: 100%;
 }
 
 #player-div p {
-  margin-top: 2em;
-  font-family: "Anton", sans-serif;
-  font-size: 2em;
-  text-align: center;
-  color: white;
+	margin-top: 2em;
+	font-family: "Anton", sans-serif;
+	font-size: 2em;
+	text-align: center;
+	color: white;
 }
 
 #player-name {
-  padding: 0em 1.25em;
-  background: white;
-  font-family: "Anton", sans-serif;
-  display: block;
-  margin: auto;
-  width: 50%;
-  height: 3em;
-  font-size: 1.5em;
-  margin-bottom: 30px;
-  border-radius: 10px;
+	padding: 0em 1.25em;
+	background: white;
+	font-family: "Anton", sans-serif;
+	display: block;
+	margin: auto;
+	width: 50%;
+	height: 3em;
+	font-size: 1.5em;
+	margin-bottom: 30px;
+	border-radius: 10px;
 }
 
 #leaderboard {
-  margin: auto;
-  /* background: black; */
-  width: 90%;
-  font-size: 2rem;
-  margin-bottom: 5rem;
+	margin: auto;
+	background: black;
+	width: 90%;
+	font-size: 2rem;
+	margin-bottom: 5rem;
 }
 
 .th {
-  background: white;
-  padding: 0.3rem;
-  font-family: "Nunito", sans-serif;
-  border-radius: 15px;
+	background: white;
+	padding: 0.3rem;
+	font-family: "Nunito", sans-serif;
 }
