@@ -43,6 +43,7 @@ function setup() {
     deltaSec = 0;
     canvas = createCanvas(1920, 1080);
     canvas.parent("canvas-div");
+    canvas.mouseClicked(()=>{});
     background(0);
     game.bird = new Bird();
     game.bird.pos.x = width / 2;
@@ -223,8 +224,6 @@ function keyReleased() {
 }
 
 function touchStarted(touch) {
-    console.log(touch.srcElement.id);
-
     if (touch.srcElement.id != 'defaultCanvas0') return;
 
     keys['space'].isPressed = true;
