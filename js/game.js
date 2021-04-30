@@ -222,19 +222,23 @@ function keyReleased() {
     }
 }
 
-// function touchStarted() {
-//     keys['space'].isPressed = true;
-//     keys['space'].isReleased = false;
-//     keys['space'].isDown = true;
-//     keys['space'].isUp = false;
-// }
+function touchStarted(touch) {
+    console.log(touch.srcElement.id);
 
-// function touchEnded() {
-//     keys['space'].isPressed = false;
-//     keys['space'].isReleased = true;
-//     keys['space'].isDown = false;
-//     keys['space'].isUp = true;
-// }
+    if (touch.srcElement.id != 'defaultCanvas0') return;
+
+    keys['space'].isPressed = true;
+    keys['space'].isReleased = false;
+    keys['space'].isDown = true;
+    keys['space'].isUp = false;
+}
+
+function touchEnded() {
+    keys['space'].isPressed = false;
+    keys['space'].isReleased = true;
+    keys['space'].isDown = false;
+    keys['space'].isUp = true;
+}
 
 game.start = function () {
     game.screen = 'gameScreen';
