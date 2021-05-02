@@ -32,13 +32,15 @@ canvas {
 	margin: 10px 10%;
 	padding: 10px;
 	border: none;
-	background: none;
+	background: dfdfdf;
 	border-radius: 50%;
-	font-size: 2em;
+	font-size: 1em;
 	user-select: none;
 
 	width: 2%;
 	height: auto;
+	min-width: 2%;
+	min-height: 3.5556%;
 
 	position: absolute;
 	top: 10px;
