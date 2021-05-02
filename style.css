@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&display=swap');
 *,
 html {
 	background: #87ceeb;
@@ -26,7 +26,7 @@ canvas {
 }
 
 #mute-btn {
-	font-family: "Nunito", sans-serif;
+	font-family: 'Nunito', sans-serif;
 	color: white;
 	background: red;
 	margin: 10px 10%;
@@ -34,6 +34,7 @@ canvas {
 	border: none;
 	border-radius: 20px;
 	font-size: 2em;
+	user-select: none;
 }
 
 #mute-btn:hover {
@@ -46,7 +47,7 @@ canvas {
 
 #player-div p {
 	margin-top: 0em;
-	font-family: "Anton", sans-serif;
+	font-family: 'Anton', sans-serif;
 	font-size: 2em;
 	text-align: center;
 	color: white;
@@ -56,7 +57,7 @@ canvas {
 #player-name {
 	padding: 0em 1.25em;
 	background: white;
-	font-family: "Anton", sans-serif;
+	font-family: 'Anton', sans-serif;
 	display: block;
 	margin: auto;
 	width: 50%;
@@ -77,5 +78,5 @@ canvas {
 .th {
 	background: white;
 	padding: 0.3rem;
-	font-family: "Nunito", sans-serif;
+	font-family: 'Nunito', sans-serif;
 }
