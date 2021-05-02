@@ -22,7 +22,7 @@ const leaderboard = {
 leaderboard.saveScore();
 window.onload = () => {
 let table = document.getElementById('leaderboard');
-console.log(document.getElementById('leaderboard'));
+// console.log(document.getElementById('leaderboard'));
 
 leaderboard.get()
 .then(result => {
