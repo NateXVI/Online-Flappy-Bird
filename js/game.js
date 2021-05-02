@@ -20,8 +20,8 @@ let flappyLogo;
 let titleScreenFont;
 let scoreFont;
 
-const domain = 'https://flappy.stoopid.fun';
-// const domain = '';
+// const domain = 'https://flappy.stoopid.fun';
+const domain = '';
 
 // Sounds
 let wingSound = new Howl({
@@ -482,5 +482,6 @@ function muteGame(isMuted = null) {
 			? 'https://www.flaticon.com/svg/vstatic/svg/727/727240.svg?token=exp=1619927206~hmac=a1728499ecbe3d6f5116b7d82b50c463'
 			: 'https://www.flaticon.com/svg/vstatic/svg/727/727269.svg?token=exp=1619926999~hmac=9a7a132d6990d22b8ccedfe2ea037394';
 	}
+	mutebtn.src = muted ? '/assets/mute.svg' : '/assets/speaker.svg';
 	localStorage.setItem('muted', muted ? 'true' : 'fales');
 }
