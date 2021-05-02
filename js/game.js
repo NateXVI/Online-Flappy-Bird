@@ -20,8 +20,8 @@ let flappyLogo;
 let titleScreenFont;
 let scoreFont;
 
-// const domain = 'https://flappy.stoopid.fun';
-const domain = '';
+const domain = 'https://flappy.stoopid.fun';
+// const domain = '';
 
 // Sounds
 let wingSound = new Howl({
