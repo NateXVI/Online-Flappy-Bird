@@ -12,7 +12,7 @@
     <div id="div-container">
         <div id="canvas-div"></div>
     </div>
-
+    <button id="mute-btn" onclick="muteGame()">mute game</button>
     <div id="player-div">
         <p>Enter name to save score to online leaderboard</p>
         <input type="text" name="player-name" id="player-name" maxlength="20" oninput="flappyCookies.savePlayerName()">
@@ -26,6 +26,7 @@
     </table>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js" integrity="sha512-L6Z/YtIPQ7eU3BProP34WGU5yIRk7tNHk7vaC2dB1Vy1atz6wl9mCkTPPZ2Rn1qPr+vY2mZ9odZLdGYuaBk7dQ==" crossorigin="anonymous"></script>
     <script src="js/game.js"></script>
     <script src="js/bird.js"></script>
     <script src="js/pipe.js"></script>

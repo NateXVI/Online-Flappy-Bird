@@ -25,16 +25,32 @@ canvas {
 	height: 100% !important;
 }
 
+#mute-btn {
+	font-family: "Nunito", sans-serif;
+	color: white;
+	background: red;
+	margin: 10px 10%;
+	padding: 10px;
+	border: none;
+	border-radius: 20px;
+	font-size: 2em;
+}
+
+#mute-btn:hover {
+	background: pink;
+}
+
 #player-div {
 	width: 100%;
 }
 
 #player-div p {
-	margin-top: 2em;
+	margin-top: 0em;
 	font-family: "Anton", sans-serif;
 	font-size: 2em;
 	text-align: center;
 	color: white;
+	-webkit-text-stroke: 1px black;
 }
 
 #player-name {

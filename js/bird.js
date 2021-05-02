@@ -17,6 +17,7 @@ class Bird {
         this.velocity += this.gravity * deltaSec;
         if(keys.space.isPressed && this.isAlive) {
             this.velocity = -this.jump;
+            playSound(wingSound);
         }
         this.pos.y += this.velocity * deltaSec;
 

@@ -5,6 +5,7 @@ let scoreScreen = {}
 let canvas;
 let deltaSec;
 
+// Images
 let bronzeMedal;
 let silverMedal;
 let goldMedal;
@@ -14,13 +15,36 @@ let scorePanel;
 let newHighScoreLabel;
 let backgroundImage;
 let flappyLogo;
+
+// Fonts
 let titleScreenFont;
 let scoreFont;
 
 const domain = 'https://flappy.stoopid.fun'
 // const domain = ''
 
-function preload() {
+// Sounds
+let wingSound = new Howl({
+    src: [domain + '/assets/wing.mp3']
+});
+let dieSound = new Howl({
+    src: [domain + '/assets/die.mp3']
+});
+let swooshSound = new Howl({
+    src: [domain + '/assets/swoosh.mp3']
+});
+let pointSound = new Howl({
+    src: [domain + '/assets/point.mp3']
+});
+let hitSound = new Howl({
+    src: [domain + '/assets/hit.mp3']
+});
+
+let muted = false;
+
+
+async function preload() {
+    // Images
     bronzeMedal = loadImage(domain + '/assets/medal_bronze.png');
     silverMedal = loadImage(domain + '/assets/medal_silver.png');
     goldMedal = loadImage(domain + '/assets/medal_gold.png');
@@ -35,8 +59,12 @@ function preload() {
     gameOverLabel = loadImage(domain + '/assets/label_game_over.png')
     flappyLogo = loadImage(domain + '/assets/flappylogo.png');
 
+    // Fonts
     titleScreenFont = loadFont(domain + '/assets/Pixeled.ttf');
     scoreFont = loadFont(domain + '/assets/flappy.TTF');
+
+    // Sounds
+
 }
 
 function setup() {
@@ -173,6 +201,7 @@ function updateTitleScreen() {
     if (titleTextScale >= 0.99 && keys.space.isPressed) {
         //game.screen = 'gameScreen'
         game.start();
+        
     }
 }
 let keys = {
@@ -251,6 +280,8 @@ game.start = function () {
     game.pipes.push(new Pipe())
     game.bird.rotation = 0;
     game.bird.velocity = 0;
+
+    playSound(swooshSound);
 }
 
 game.end = function () {
@@ -258,6 +289,9 @@ game.end = function () {
     game.bird.isAlive = false;
     game.bird.velocity = -game.bird.jump * 1.75;
     game.endTime = millis();
+
+    playSound(dieSound);
+    playSound(hitSound);
 
     if (game.highScore == undefined) {
         game.highScore = game.score;
@@ -280,6 +314,7 @@ game.updateGame = function () {
     for (let i = 0; i < game.pipes.length; i++) {
         if (game.pipes[i].pos.x < game.bird.pos.x && game.pipes[i].previousPos >= game.bird.pos.x) {
             game.score += 1;
+            playSound(pointSound);
             // console.log(this.score);
 
 
@@ -443,3 +478,13 @@ window.addEventListener('keydown', function (e) {
         e.preventDefault();
     }
 });
+
+function playSound(sound) {
+    if(!muted) sound.play();
+}
+
+function muteGame() {
+    muted = !muted
+    let mutebtn = document.getElementById('mute-btn');
+    mutebtn.innerHTML = muted ? 'unmute game' : 'mute game';
+}
