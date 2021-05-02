@@ -28,13 +28,19 @@ canvas {
 #mute-btn {
 	font-family: 'Nunito', sans-serif;
 	color: white;
-	background: red;
 	margin: 10px 10%;
 	padding: 10px;
 	border: none;
 	border-radius: 20px;
 	font-size: 2em;
 	user-select: none;
+
+	width: 2%;
+	height: auto;
+
+	position: absolute;
+	top: 10px;
+	left: 10px;
 }
 
 #mute-btn:hover {
