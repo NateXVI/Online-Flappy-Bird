@@ -26,8 +26,7 @@ console.log(document.getElementById('leaderboard'));
 
 leaderboard.get()
 .then(result => {
-    console.log(result);
-
+    result = result.filter(value => value.player_score != 0)
     for(let i = 0; i < result.length; i++){
         let r = i+1;
         let tr = '<tr class="th">';

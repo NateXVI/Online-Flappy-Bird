@@ -18,6 +18,7 @@ let titleScreenFont;
 let scoreFont;
 
 const domain = 'https://flappy.stoopid.fun'
+// const domain = ''
 
 function preload() {
     bronzeMedal = loadImage(domain + '/assets/medal_bronze.png');
