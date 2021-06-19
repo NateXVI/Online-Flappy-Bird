@@ -11,22 +11,19 @@
 		<img src="" alt="" srcset="" onclick="muteGame()" id="mute-btn" />
 		<p class="message">scroll for leaderboard⬇️</p>
 		<div class="filler"></div>
-		<div class="player-div">
-			<div class="save-message">
-				<p class="save-message">
-					score automatically saves when name is entered
-				</p>
-			</div>
-			<div class="">
-				<label for="player-name">name</label>
-				<input
-					type="text"
-					name="player-name"
-					id="player-name"
-					maxlength="20"
-					oninput="flappyCookies.savePlayerName()"
-				/>
-			</div>
+		<div class="save-message">
+			<p class="save-message">enter you name to be on the leaderboard</p>
+		</div>
+		<div class="input-div">
+			<input
+				type="text"
+				name="player-name"
+				id="player-name"
+				placeholder="your name"
+				maxlength="20"
+				oninput="flappyCookies.savePlayerName()"
+			/>
+			<button class="save-button">save</button>
 		</div>
 		<table id="leaderboard">
 			<tr class="th">

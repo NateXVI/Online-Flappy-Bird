@@ -108,18 +108,45 @@ p.message {
 	cursor: pointer;
 }
 
-.player-div {
+div.save-message {
 	width: 100%;
 	max-width: 1000px;
 	margin: auto;
+}
 
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-between;
-
-	font-size: 1.2em;
-	font-weight: bolder;
+p.save-message {
+	text-align: center;
+	padding: 2em 2px;
+	font-size: 2em;
+	font-weight: bold;
 	color: white;
+}
+
+.input-div {
+	width: 100%;
+	max-width: 1000px;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	height: 3em;
+	margin-bottom: 2em;
+}
+
+label {
+	font-size: 2em;
+	border: none;
+	text-align: center;
+	height: em;
+	background: none;
+}
+
+input {
+	font-size: 2em;
+	min-width: 0;
+}
+
+button {
+	font-size: 2em;
 }
 
 #leaderboard {
