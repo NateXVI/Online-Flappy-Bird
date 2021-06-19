@@ -20,8 +20,8 @@ let flappyLogo;
 let titleScreenFont;
 let scoreFont;
 
-const domain = 'https://flappy.stoopid.fun';
-// const domain = '';
+// const domain = 'https://flappy.stoopid.fun';
+const domain = '';
 
 // Sounds
 let wingSound = new Howl({
@@ -67,7 +67,8 @@ function setup() {
 	angleMode(DEGREES);
 	deltaSec = 0;
 	canvas = createCanvas(1920, 1080);
-	canvas.parent('canvas-div');
+	windowResized();
+	// canvas.parent('canvas-div');
 	canvas.mouseClicked(() => {});
 	background(0);
 	game.bird = new Bird();
@@ -476,4 +477,41 @@ function muteGame(isMuted = null) {
 	}
 	mutebtn.src = muted ? '/assets/mute.svg' : '/assets/speaker.svg';
 	localStorage.setItem('muted', muted ? 'true' : 'fales');
+}
+//620x560 min
+//1920x1080 max
+function windowResized() {
+	let minW = 1000;
+	let minH = 800;
+	let maxW = 100000000000;
+	let maxH = 1080;
+
+	let c = canvas.elt;
+	let w = windowWidth;
+	let h = windowHeight;
+
+	let scale = 1;
+	if (w < minW || h < minH) {
+		//
+		wd = w / minW;
+		hd = h / minH;
+
+		if (wd <= hd) {
+			scale = wd;
+		} else {
+			scale = hd;
+		}
+	} else if (w < minW) {
+		//
+	} else if (h < minH) {
+		//
+	}
+
+	// w = constrain(w, minW, maxW);
+	// h = constrain(h, minH, maxH);
+
+	console.log(scale);
+	let iscale = 1 / scale;
+	c.style.transform = `scale(${scale})`;
+	resizeCanvas(w * iscale, h * iscale);
 }

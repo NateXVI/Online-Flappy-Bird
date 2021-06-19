@@ -8,20 +8,25 @@
 	</head>
 
 	<body>
-		<div id="div-container">
-			<div id="canvas-div"></div>
-
-			<img src="" alt="" srcset="" onclick="muteGame()" id="mute-btn" />
-		</div>
-		<div id="player-div">
-			<p>Enter name to save score to online leaderboard</p>
-			<input
-				type="text"
-				name="player-name"
-				id="player-name"
-				maxlength="20"
-				oninput="flappyCookies.savePlayerName()"
-			/>
+		<img src="" alt="" srcset="" onclick="muteGame()" id="mute-btn" />
+		<p class="message">scroll for leaderboard⬇️</p>
+		<div class="filler"></div>
+		<div class="player-div">
+			<div class="save-message">
+				<p class="save-message">
+					score automatically saves when name is entered
+				</p>
+			</div>
+			<div class="">
+				<label for="player-name">name</label>
+				<input
+					type="text"
+					name="player-name"
+					id="player-name"
+					maxlength="20"
+					oninput="flappyCookies.savePlayerName()"
+				/>
+			</div>
 		</div>
 		<table id="leaderboard">
 			<tr class="th">
@@ -31,6 +36,9 @@
 			</tr>
 		</table>
 
+		<p class="player-div" style="flex-direction: row; padding: 1em">
+			if you are on mobile, safari is the recommended browser :)
+		</p>
 		<script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.1/howler.min.js"
