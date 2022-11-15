@@ -3,12 +3,19 @@
 	import sketch from './sketch';
 </script>
 
-<div>
-	<P5 sketch="{sketch}" />
+<div class="mx-auto grid max-w-[1200px] place-items-center overflow-hidden">
+	<div class="pb-5">
+		<P5 sketch="{sketch}" />
+	</div>
 </div>
 
 <style global>
 	canvas.p5Canvas {
-		display: block;
+		@apply block rounded;
+	}
+	@media (min-height: 934px) {
+		canvas.p5Canvas {
+			@apply mt-[17px];
+		}
 	}
 </style>

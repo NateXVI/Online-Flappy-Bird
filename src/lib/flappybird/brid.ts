@@ -5,7 +5,7 @@ import game from './game';
 export default class Bird {
 	pos = { x: 0, y: 0 };
 	rotation = 0;
-	width = 85;
+	width = 67;
 	height = 51;
 	sprite = undefined;
 	velocity = 0;

@@ -17,6 +17,9 @@ const sketch: Sketch = (p) => {
 		const [width, height] = game.getWindowSize(p);
 		canvas = p.createCanvas(width, height);
 		canvas.mouseClicked(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
+		// make the images look good
+		(canvas as any).drawingContext.imageSmoothingEnabled = false; // eslint-disable-line @typescript-eslint/no-explicit-any
+		p.noSmooth();
 		p.background(0);
 	};
 	p.draw = () => {

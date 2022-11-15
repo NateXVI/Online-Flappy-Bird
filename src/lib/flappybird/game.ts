@@ -109,7 +109,7 @@ export const game = {
 		p.fill(255);
 		p.stroke(0);
 		p.strokeWeight(10 * game.uiScale);
-		p.textFont(assets.font.score, 100 * game.uiScale);
+		p.textFont(assets.font.score, 65 * game.uiScale);
 		p.textAlign(p.CENTER);
 		p.text(game.score, p.width / 2, 110 * game.uiScale);
 		p.pop();
