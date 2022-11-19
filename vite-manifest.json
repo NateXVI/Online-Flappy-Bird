@@ -111,12 +111,12 @@
       "__page-73f03f24.js"
     ]
   },
-  "_page.css": {
-    "file": "_app/immutable/assets/_page-a988dd9a.css",
-    "src": "_page.css"
-  },
   "src/routes/+layout.css": {
     "file": "_app/immutable/assets/_layout-dd232f0f.css",
     "src": "src/routes/+layout.css"
+  },
+  "_page.css": {
+    "file": "_app/immutable/assets/_page-a988dd9a.css",
+    "src": "_page.css"
   }
 }
