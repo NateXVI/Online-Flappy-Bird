@@ -5,12 +5,16 @@ import Bird from './brid';
 import { Pipe } from './pipe';
 import { drawBackground, drawGround, drawStaticBackground } from './scenes';
 
+const hightScoreKey = 'flappy-highscore';
+const savedScore =
+	typeof window !== 'undefined' ? parseInt(window.localStorage.getItem(hightScoreKey) ?? '0') : 0;
+
 export const game = {
 	screen: 'titleScreen' as 'titleScreen' | 'gameScreen' | 'scoreScreen',
 	bird: new Bird(),
 	pipes: [] as Pipe[],
 	score: 0,
-	highScore: 0,
+	highScore: isNaN(savedScore) ? 0 : savedScore,
 	newBest: false,
 	startTime: 0,
 	endTime: 0,
@@ -63,6 +67,7 @@ export const game = {
 
 		if (game.highScore < game.score) {
 			game.highScore = game.score;
+			window.localStorage.setItem(hightScoreKey, game.highScore.toString());
 			game.newBest = true;
 		} else {
 			game.newBest = false;
