@@ -18,7 +18,7 @@ export const game = {
 	newBest: false,
 	startTime: 0,
 	endTime: 0,
-	muted: false,
+	muted: typeof window !== 'undefined' ? localStorage.getItem('flappy-muted') === 'true' : false,
 	keys: {
 		space: {
 			isUp: true,
@@ -173,5 +173,20 @@ export const game = {
 		return [width, height];
 	}
 };
+
+if (typeof window !== 'undefined') {
+	document.addEventListener('flappy-sound-toggle', (e) => {
+		if (
+			'detail' in e &&
+			typeof e.detail === 'object' &&
+			e.detail !== null &&
+			'sound' in e.detail &&
+			typeof e.detail.sound === 'boolean'
+		) {
+			game.muted = !e.detail.sound;
+			localStorage.setItem('flappy-muted', game.muted.toString());
+		}
+	});
+}
 
 export default game;
